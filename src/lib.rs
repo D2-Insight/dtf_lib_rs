@@ -2,12 +2,12 @@ use serde::{Deserialize, Serialize};
 use serde_valid::Validate;
 use std::collections::HashMap;
 
-type BungieHash = u32;
-type Color = (u8, u8, u8);
-type Image = Vec<Vec<Color>>;
+pub type BungieHash = u32;
+pub type Color = (u8, u8, u8);
+pub type Image = Vec<Vec<Color>>;
 
 #[derive(Serialize, Deserialize)]
-struct Response<T> {
+pub struct Response<T> {
     weapon: Weapon,
     buffs: Vec<Buff>,
     settings: Settings,
@@ -16,28 +16,28 @@ struct Response<T> {
 }
 
 #[derive(Serialize, Deserialize)]
-struct Settings {
+pub struct Settings {
     brightness: u8,
     fov: u8,
     resolution: (u16, u16),
 }
 
 #[derive(Validate, Serialize, Deserialize)]
-struct StatValue(
+pub struct StatValue(
     #[validate(maximum = 100)]
     #[validate(minimum = 0)]
     i32,
 );
 
 #[derive(Serialize, Deserialize)]
-struct Buff {
+pub struct Buff {
     hash: BungieHash,
     value: u8,
     name: String,
 }
 
 #[derive(Serialize, Deserialize)]
-struct Weapon {
+pub struct Weapon {
     type_hash: u8,
     frame_hash: BungieHash,
     hash: BungieHash,
@@ -45,26 +45,26 @@ struct Weapon {
 }
 
 #[derive(Serialize, Deserialize)]
-struct Handling {
+pub struct Handling {
     ads_time: f64,
     draw_time: f64,
     stow_time: f64,
 }
 
 #[derive(Serialize, Deserialize)]
-struct Ammo {
+pub struct Ammo {
     mag_size: u8,
     inventory_size: u8,
 }
 
 #[derive(Serialize, Deserialize)]
-struct Reload {
+pub struct Reload {
     time: f64,
     ammo_time: f64,
 }
 
 #[derive(Serialize, Deserialize)]
-struct Reticle(Image);
+pub struct Reticle(Image);
 
 #[derive(Serialize, Deserialize)]
-struct GreenReticle(Vec<Vec<u8>>);
+pub struct GreenReticle(Vec<Vec<u8>>);
